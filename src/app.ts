@@ -1,16 +1,15 @@
 import * as express from 'express'
 import catsRouter from './cats/cats.router'
 
-// export const app: express.Express = express()
-const port: number = 8000
-
 // 싱글톤으로 리팩
 class Server {
   public app: express.Application
+  public port: number
 
   constructor() {
     const app: express.Application = express()
     this.app = app
+    this.port = 8000
   }
 
   private setRouter() {
@@ -37,7 +36,7 @@ class Server {
   public listen() {
     this.setRouter()
     this.setmiddleware()
-    this.app.listen(port, () => {
+    this.app.listen(this.port, () => {
       console.log('...start server')
     })
   }

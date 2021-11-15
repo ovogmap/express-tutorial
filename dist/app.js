@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var cats_router_1 = require("./cats/cats.router");
-var port = 8000;
 var Server = (function () {
     function Server() {
         var app = express();
         this.app = app;
+        this.port = 8000;
     }
     Server.prototype.setRouter = function () {
         this.app.use(cats_router_1.default);
@@ -25,7 +25,7 @@ var Server = (function () {
     Server.prototype.listen = function () {
         this.setRouter();
         this.setmiddleware();
-        this.app.listen(port, function () {
+        this.app.listen(this.port, function () {
             console.log('...start server');
         });
     };
